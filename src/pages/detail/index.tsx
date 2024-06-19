@@ -45,7 +45,7 @@ export function ProductDetail() {
             <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-start">
               <img
                 className="w-full lg:w-80 h-80 lg:h-auto object-contain rounded-lg mb-4 lg:mb-0"
-                src={product.cover}
+                src={product.image}
                 alt={product.title}
               />
 
