@@ -1,9 +1,13 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { CartContext } from '../../contexts/CartContext';
+import { CartContext, CartProps } from '../../contexts/CartContext';
 
 export function Cart() {
   const { cart, total, addItemCart, removeItemCart } = useContext(CartContext);
+
+  const formatCurrency = (value: number) => {
+    return value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+  };
 
   return (
     <div className="w-full max-w-7xl mx-auto px-4">
@@ -21,17 +25,17 @@ export function Cart() {
         </div>
       )}
 
-      {cart.map((item) => (
+      {cart.map((item: CartProps) => (
         <section key={item.id} className="border-b border-gray-300 py-4">
           <div className="flex items-center mb-4 md:mb-0">
             <img
-              src={item.cover}
+              src={item.image} // Certifique-se de que 'image' está corretamente definido em CartProps
               alt={item.title}
               className="w-24 h-24 object-cover rounded"
             />
             <div className="ml-4">
               <h2 className="font-medium text-lg">{item.title}</h2>
-              <p className="text-gray-600">Preço: {item.price.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}</p>
+              <p className="text-gray-600">Preço: {formatCurrency(item.price)}</p>
             </div>
           </div>
 
@@ -55,14 +59,14 @@ export function Cart() {
             </div>
 
             <strong className="mt-2 md:mt-0 ml-4">
-              Subtotal: {item.total.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
+              Subtotal: {formatCurrency(item.total)}
             </strong>
           </div>
         </section>
       ))}
 
       {cart.length !== 0 && (
-        <p className="font-bold mt-8 text-xl text-right">Total: {total}</p>
+        <p className="font-bold mt-8 text-xl text-right">Total: {formatCurrency(Number(total))}</p>
       )}
     </div>
   );
