@@ -1,6 +1,6 @@
 // src/pages/home/index.tsx
 
-import React, { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import { BsCartPlus } from "react-icons/bs";
 
 import { api } from "../../services/api";
