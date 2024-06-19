@@ -11,7 +11,7 @@ export interface ProductProps {
   title: string;
   description: string;
   price: number;
-  cover: string;
+  image: string;
 }
 
 export function Home() {
@@ -20,8 +20,12 @@ export function Home() {
 
   useEffect(() => {
     async function getProducts() {
-      const response = await api.get("/products");
-      setProducts(response.data);
+      try {
+        const response = await api.get('/products');
+        setProducts(response.data);
+      } catch (error) {
+        console.error('Erro ao carregar os produtos:', error);
+      }
     }
 
     getProducts();
@@ -54,7 +58,7 @@ export function Home() {
               <Link to={`/product/${product.id}`}>
                 <img
                   className="w-full h-48 object-cover rounded-lg mb-2"
-                  src={product.cover}
+                  src={product.image}
                   alt={product.title}
                 />
                 <p className="font-medium mt-1 mb-2 text-gray-800">
