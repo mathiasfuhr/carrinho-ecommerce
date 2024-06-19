@@ -1,3 +1,5 @@
+// src/pages/home/index.tsx
+
 import React, { useEffect, useState, useContext } from "react";
 import { BsCartPlus } from "react-icons/bs";
 
@@ -11,7 +13,7 @@ export interface ProductProps {
   title: string;
   description: string;
   price: number;
-  image: string;
+  image: string; // Corrigido para 'image' ao invés de 'cover'
 }
 
 export function Home() {
@@ -25,7 +27,6 @@ export function Home() {
         setProducts(response.data);
       } catch (error) {
         console.error('Erro ao carregar os produtos:', error);
-        // Exemplo simples de tratamento de erro com toast
         toast.error('Erro ao carregar os produtos. Por favor, tente novamente mais tarde.');
       }
     }
@@ -60,7 +61,7 @@ export function Home() {
               <Link to={`/product/${product.id}`}>
                 <img
                   className="w-full h-48 object-cover rounded-lg mb-2"
-                  src={product.image}
+                  src={product.image} // Ajustado para 'image' ao invés de 'cover'
                   alt={product.title}
                 />
                 <p className="font-medium mt-1 mb-2 text-gray-800">
