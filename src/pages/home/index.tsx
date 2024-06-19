@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { BsCartPlus } from "react-icons/bs";
 
 import { api } from "../../services/api";
@@ -25,6 +25,8 @@ export function Home() {
         setProducts(response.data);
       } catch (error) {
         console.error('Erro ao carregar os produtos:', error);
+        // Exemplo simples de tratamento de erro com toast
+        toast.error('Erro ao carregar os produtos. Por favor, tente novamente mais tarde.');
       }
     }
 
@@ -78,7 +80,7 @@ export function Home() {
                   onClick={() => handleAddCartItem(product)}
                 >
                   <BsCartPlus size={20} />
-                  Adicinar ao carrinho
+                  Adicionar ao carrinho
                 </button>
               </div>
             </section>
